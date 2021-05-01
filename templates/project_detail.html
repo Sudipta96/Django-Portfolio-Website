@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<title>{% block title %} {{ project.project_title}} {% endblock title %}</title>
+
+{% block content %}
+ <!-- start of project details section -->
+ <section id="project" class="project-section py-5">
+   <div class="container">
+     <div class="row mb-4">
+       <div class="col text-center">
+         <h3>{{ project.project_title}}</h3>
+         <p class="project-catagory">Catagory . {{ project.catagory}}</p>
+       </div>
+     </div>
+     <div class="row">
+       <div class="col-md-7 my-3">
+         <h4>Project Brief</h5>
+         <p class="text-jusify">{{ project.project_brief }}</p>
+       </div>
+       <div class="col-md-5 my-3">
+         <h4>Project Info</h3>
+         <h5 class="project-info">Technologies - <span style="font-size:16px">{{ project.technologies}}</span></h5>
+         {% if project.web_url %}
+         <h5 class="project-info">Web - <a href="{{project.web_url}}" style="font-size:16px">{{ project.web_url }}</a></h5>
+         {% endif %}
+         {% if project.github_url %}
+         <h5 class="project-info">Github - <a href="{{ project.github_url }}" style="font-size:16px">{{ project.github_url }}</a></h5>
+         {% endif %}
+       </div>
+     </div>
+     <div class="row">
+        <div class="col-12 text-center mt-5 mb-4">
+            <h3>Features</h3>
+        </div>
+     </div>
+
+       <div class="row">
+          {% for feature in features %}
+           <div class="col-12 text-center my-3">
+               <div class="feature">
+                 <div class="project-image">
+                   <img src="{{ feature.feature_image.url }}" alt="">
+                 </div>
+                 <div class="mt-3">
+                   <h5 class="feature-name">{{ feature.feature_title }}</h5>
+                 </div>
+               </div>
+           </div>
+           {% endfor %}
+       </div>
+     </div>
+   </div>
+
+ </section>
+
+ {% endblock content %}

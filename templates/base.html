@@ -1,0 +1,131 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- boostrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- main css -->
+    <style>
+    .hidden{
+       visibility: hidden;
+    }
+    </style>
+
+    <link rel="stylesheet" id="style" type="text/css" href="{% static 'css/light.css' %}">
+    <!--font awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+    <!-- default color skin -->
+    <link rel="stylesheet" id="skin-color" type="text/css" href="{% static 'css/skins/color-1.css' %}">
+
+    <script>
+    /*to prevent Firefox FOUC, this must be here*/
+     let FF_FOUC_FIX;
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js" integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g==" crossorigin="anonymous"></script>
+
+
+    <script type="text/javascript">
+     $('html').addClass('hidden');
+     $(document).ready(function() {    // EDIT: From Adam Zerner's comment below: Rather use load: $(window).on('load', function () {...});
+       $('html').removeClass('hidden');  // EDIT: Can also use $('html').removeClass('hidden');
+      });
+     </script>
+
+     <title>{% block title %} My Portfolio {% endblock title %}</title>
+
+  </head>
+
+  <body>
+
+   <!-- header section -->
+   <header class="" id="header">
+     <div class="header">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <a class="logo" href="{% url 'portfolio:index' %}">
+            <img src="{% static 'img/logo.png' %}" class="logo-img" width="40px" alt="">
+          </a>
+          <button class="navbar-toggler outer-shadow hover-in-shadow" type="button" data-toggle="collapse" data-target="#myNavbar" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <!-- <span class="navbar-toggler-icon"></span> -->
+            <div class="bar1"></div>
+            <div class="bar2"></div>
+            <div class="bar3"></div>
+          </button>
+
+
+          <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="ml-auto">
+              <li class="nav-item">
+                <a class="nav-link home" nav-id="home"  href="{% url 'portfolio:index' %}">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link about" nav-id="about" href="{% url 'portfolio:about' %}">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link skills" nav-id="skills" href="{% url 'portfolio:skills' %}">Skills</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link services" nav-id="services" href="{% url 'portfolio:services' %}">Services</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link portfolio" nav-id="portfolio" href="{% url 'portfolio:portfolio' %}">Portfolio</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link contact" nav-id="contact" href="{% url 'portfolio:contact' %}">Contact</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+
+         <div class="themes">
+            <div class="colors">
+                <h3>Theme Colors</h3>
+                <ul class="theme-colors">
+                  <li id="1"></li>
+                  <li id="2"></li>
+                  <li id="3"></li>
+                  <li id="4"></li>
+                  <li id="5"></li>
+                </ul>
+                <br>
+            </div>
+            <button class="btn theme-switcher" id="style-switcher-btn">
+              <i class="fas fa-cog fa-spin"id="style-switcher-icon"></i>
+            </button>
+              <br>
+            <button class="btn theme-switcher light-dark-theme" id="light-switcher-btn">
+                <i class="fas fa-moon" id="light-dark-icon"></i>
+            </button>
+         </div>
+  </header>
+     <!-- end of header -->
+     {% block content %}
+
+     {% endblock content %}
+
+
+
+
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js" integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g==" crossorigin="anonymous"></script>
+
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js" integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g==" crossorigin="anonymous"></script>
+     <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <!-- about section end -->
+     <!-- isotope js -->
+     <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.js"></script>
+
+     <script src="{% static 'js/main.js' %}"></script>
+     <script src="{% static 'js/style-switcher.js' %}"></script>
+
+     {% block js %}
+     {% endblock js %}
+
+
+  </body>
+</html>

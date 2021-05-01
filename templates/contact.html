@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<title>{% block title %}Contact {% endblock title %}</title>
+{% block content %}
+<!-- Contact section -->
+<section id="contact" class="contact-section py-5">
+  <div class="container">
+    <!-- heading -->
+    <div class="row mx-auto">
+     {% for message in messages %}
+         <div class="col-10 mx-auto text-center message w-50 mb-4 alert text-{{ message.tags }} alert-dismissible" role="alert" >
+           <button type="button" class="close-btn close" data-dismiss="alert" aria-label="Close">
+             <i class="fas fa-times text-{{ message.tags }}"></i>
+           </button>
+           {{ message }}
+         </div>
+      {% endfor %}
+
+      <div class="col-12 text-center mb-4">
+        <h5 class="text-capitalize">Contact</h5>
+        <h2 style="font-weight:500;">Get In Touch</h2>
+      </div>
+    </div>
+    <!-- end of heading -->
+    <div class="row mx-auto">
+
+        <!-- single service  -->
+      <div class="col-sm-6 col-md-4 my-3">
+          <article class="contact-info text-center">
+            <div class="service-icon pt-5 pb-4">
+                  <i class="fas fa-phone contact-icon" style="font-size:20px;"></i>
+            </div>
+            <p class="contact-medium-name font-weight-bold">Phone</p>
+            <div class="service-text pb-5">
+              <p class="contact-medium-detail text-center mx-4">01715082329</p>
+            </div>
+          </article>
+      </div>
+      <!-- end of single service  -->
+
+        <!-- single service  -->
+        <div class="col-sm-6 col-md-4 my-3">
+          <article class="contact-info text-center">
+            <div class="service-icon pt-5 pb-4">
+                  <i class="far fa-envelope contact-icon" style="font-size:20px;"></i>
+            </div>
+            <p class="contact-medium-name font-weight-bold">Email</p>
+            <div class="service-text pb-4">
+              <p class="contact-medium-detail text-center email">sudiptasarker583@gmail.com</p>
+            </div>
+          </article>
+        </div>
+        <!-- end of single service  -->
+
+        <!-- single service  -->
+        <div class="col-sm-6 col-md-4 my-3">
+          <article class="contact-info text-center">
+            <div class="service-icon pt-5 pb-3">
+                  <i class="fas fa-map-marker-alt contact-icon" style="font-size:20px;"></i>
+            </div>
+            <p class="contact-medium-name font-weight-bold">Address</p>
+            <div class="service-text">
+              <p class="contact-medium-detail text-center mx-4">29/2 Block-B,East-Rajasion,Savar, Dhaka </p>
+            </div>
+          </article>
+        </div>
+        <!-- end of single service  -->
+
+    </div>
+
+    <!-- form -->
+
+    <div class="row my-5">
+        <div class="col-12">
+
+          <form class="row" id="form" method="POST" autocomplete="off">
+
+           {% csrf_token %}
+           <div class="col-md-6">
+             <div class="form__field">
+
+               <div class="input-group my-1">
+                 <label class="input-group__label">Name</label>
+                 {{ form.sent_by }}
+                 <!-- <input class="input-group__input" id="fname" type="text"  required> -->
+               </div>
+
+               <div class="input-group my-1">
+                 <label class="input-group__label">Email</label>
+                 <!-- <input class="input-group__input" id="email" type="email" required> -->
+                 {{ form.sender_email }}
+               </div>
+
+
+               <div class="input-group my-1">
+                 <label class="input-group__label">Subject</label>
+                 {{ form.subject }}
+                 <!-- <input class="input-group__input" id="subject" type="text"  required> -->
+               </div>
+             </div>
+           </div>
+
+
+           <div class="col-md-6">
+               <div class="form__field">
+                 <div class="input-group">
+                   <label class="input-group__label">Message</label>
+                   {{ form.message }}
+                   <!-- <textarea class="input-group__input" id="message"  rows="7" required></textarea> -->
+                 </div>
+               </div>
+             <button type="submit" class="btn submit float-right my-3" >Submit</button>
+           </div>
+          </form>
+
+        </div>
+
+
+    </div>
+
+    <!-- end form -->
+
+
+  </div>
+
+
+</section>
+
+<!-- end of contact section -->
+{% endblock content %}

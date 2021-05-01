@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<title>{% block title %}About Me{% endblock title %}</title>
+{% block content %}
+
+<!-- about section start -->
+<section id="about" class="about-section py-5">
+   <div class="container">
+      <div class="row">
+        <div class="col-12 text-center mb-4">
+         <h5>MAIN INFO</h5>
+         <h1 style="font-weight:500;">ABOUT ME</h1>
+        </div>
+
+        <div class="col-12">
+          <div class="row">
+             <div class="col-md-6 text-center mt-4">
+               <div class="row">
+                 <div class="col-12 img-box1">
+                   <img src="{{ bio.profile_pic.url }}"  class="about-me-img" alt="">
+                 </div>
+                 <div class="col-12">
+                   <div class="row justify-content-center">
+                       <div class="social-media d-flex mt-3">
+                         <a href="{{ bio.fb_url }}" class="mx-2">
+                           <i class="fab fa-facebook"></i>
+                         </a>
+                         <a href="{{ bio.linkedin_url }}" class="mx-2">
+                           <i class="fab fa-linkedin-in"></i>
+                         </a>
+                         <a href="{{ bio.github_url }}" class="mx-2">
+                           <i class="fab fa-github"></i>
+                         </a>
+                       </div>
+                   </div>
+                 </div>
+               </div>
+
+             </div>
+             <div class="col-md-6 mt-3">
+               <p class="text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores, assumenda! Exercitationem, molestiae. Ratione, aperiam eos corporis praesentium hic reprehenderit nobis! Doloremque aspernatur pariatur amet ullam at magni cum velit consequatur placeat, minus, provident vero! Sed, expedita temporibus, qui veniam, porro ipsa sint ullam nesciunt corporis numquam nulla eligendi adipisci nisi!</p>
+               <div class="div py-3 text-center">
+
+                 <a href="{{ bio.cv_file.url }}" class="link-item btn-1 outer-shadow hover-in-shadow">Download CV</a>
+                 <a href="{% url 'portfolio:contact' %}" class="link-item btn-1 outer-shadow hover-in-shadow mx-3">Hire Me</a>
+
+               </div>
+             </div>
+
+           </div>
+        </div>
+
+      </div>
+   </div>
+</section>
+<!-- end of about section -->
+{% endblock content %}
