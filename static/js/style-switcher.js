@@ -41,13 +41,11 @@ themeSwitcher.onclick = function (){
         lightdarkIcon.classList.remove('fa-sun');
         lightdarkIcon.classList.add('fa-moon');
         swapStyleSheet("/static/css/light.css");
-
     }
     else if(lightdarkIcon.classList.contains('fa-moon')){
         lightdarkIcon.classList.remove('fa-moon');
         lightdarkIcon.classList.add('fa-sun');
         swapStyleSheet("/static/css/dark.css");
-
     }
 
 };

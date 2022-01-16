@@ -522,10 +522,14 @@ li a.active{
 }
 
 .single-personal-info .second-item{
-    margin-top: 160px;
-    z-index: -1;
+  margin-top: 180px;
 }
 
+@media screen and (max-width: 1200px){
+.single-personal-info .second-item{
+  z-index: -1;
+}
+}
 
 .divider {
   display: flex;

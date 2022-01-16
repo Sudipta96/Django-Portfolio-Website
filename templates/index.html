@@ -116,6 +116,7 @@
           </div>
           <!-- end skill  -->
 
+
           <!--  training  -->
           <div class="row mt-5 d-none" id="training">
              {% for training in training_infos %}
@@ -123,7 +124,8 @@
               <div class="col-5 single-personal-info text-center px-4">
                 <div class="p-3 first-item outer-shadow hover-in-shadow text-right">
                   <small class="session">{{ training.session }}</small>
-                  <h6 class="name my-2">{{ training.title }}</h5>
+                  <h6 class="name my-2">{{ training.title }}</h6>
+                  <h6 class="name my-2">{{ training.training_center }}</h6>
                   <small class="detail">{{ training.training_detail }}</small>
                 </div>
               </div>
@@ -140,7 +142,8 @@
                 <div class="col-5 single-personal-info text-center">
                   <div class="p-3 second-item outer-shadow hover-in-shadow text-left">
                     <small class="session">{{ training.session }}</small>
-                    <h6 class="name my-2">{{ training.title }}</h5>
+                    <h6 class="name my-2">{{ training.title }}</h6>
+                    <h6 class="name my-2">{{ training.training_center }}</h6>
                     <small class="detail">{{ training.training_detail }}</small>
                   </div>
                 </div>
@@ -156,8 +159,11 @@
               <div class="col-5 single-personal-info text-center px-4">
                   <div class="p-3 first-item outer-shadow hover-in-shadow text-right">
                     <small class="session">{{ degree.session }}</small>
-                    <h6 class="name my-2">{{ degree.degree_title }}</h5>
+                    <h6 class="name my-2">{{ degree.degree_title }}</h6>
+                    <h6 class="name my-2">{{ degree.institution_name }}</h6>
                     <small class="detail">{{ degree.description }}</small>
+                    <br>
+                    <small class="detail">{{ degree.result }}</small>
                   </div>
               </div>
 
@@ -172,8 +178,11 @@
               <div class="col-5 single-personal-info text-center">
                 <div class="p-3 second-item outer-shadow hover-in-shadow text-left">
                   <small class="session">{{ degree.session }}</small>
-                  <h6 class="name my-2">{{ degree.degree_title }}</h5>
+                  <h6 class="name my-2">{{ degree.degree_title }}</h6>
+                  <h6 class="name my-2">{{ degree.institution_name }}</h6>
                   <small class="detail">{{ degree.description }}</small>
+                  <br>
+                  <small class="detail">{{ degree.result }}</small>
                 </div>
               </div>
               {% endif %}

@@ -16,7 +16,6 @@ class Biodata(models.Model):
     def __str__(self):
         return self.name
 
-
 class Skill(models.Model):
     skill_name = models.CharField(max_length=200)
     percentage = models.CharField(max_length=20)
@@ -24,11 +23,13 @@ class Skill(models.Model):
     def __str__(self):
         return self.skill_name
 
-
 class Training(models.Model):
     session = models.CharField(max_length=100)
     title = models.CharField(max_length=255)
+    training_center = models.TextField(blank=True)
     training_detail = models.TextField()
+    duration = models.CharField(max_length=255, blank=True)
+    timestamp = models.DateTimeField(auto_now_add=True)
     before_divider = models.BooleanField(default=True)
 
     def __str__(self):
@@ -38,11 +39,17 @@ class Training(models.Model):
 class Education(models.Model):
     session = models.CharField(max_length=100)
     degree_title = models.CharField(max_length=255)
+    institution_name = models.TextField(blank=True)
     description = models.TextField()
+    result = models.CharField(max_length=255, blank=True)
+    timestamp = models.DateTimeField(auto_now_add=True)
     before_divider = models.BooleanField(default=True)
 
     def __str__(self):
         return self.degree_title
+
+
+
 
 
 class Service(models.Model):

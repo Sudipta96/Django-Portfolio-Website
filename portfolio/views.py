@@ -19,8 +19,8 @@ def index(request):
         form = ContactForm()
         biodata = Biodata.objects.last()
         skills = Skill.objects.all()
-        training_infos = Training.objects.all()
-        edu_infos = Education.objects.all()
+        training_infos = Training.objects.all().order_by('-timestamp')
+        edu_infos = Education.objects.all().order_by('-timestamp')
         services = Service.objects.all()
         categories = Catagory.objects.all()
         projects = Project.objects.all()
@@ -46,8 +46,8 @@ def about(request):
 
 def skills(request):
     skills = Skill.objects.all()
-    training_infos = Training.objects.all()
-    edu_infos = Education.objects.all()
+    training_infos = Training.objects.all().order_by('-timestamp')
+    edu_infos = Education.objects.all().order_by('-timestamp')
     context = {
         'skills': skills,
         'training_infos': training_infos,

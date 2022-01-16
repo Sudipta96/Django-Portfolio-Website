@@ -457,7 +457,7 @@ li a.active{
 /*----------------------skill section start-----------------  */
 
 .skill-section{
-  min-height: 80vh;
+  min-height: 100vh;
 }
 
 .skill-section .section-title button{
@@ -498,10 +498,14 @@ box-shadow: var(--inner-shadow) !important;
   color: var(--skin-color) !important;
 }
 
-
 .single-personal-info .second-item{
   margin-top: 180px;
+}
+
+@media screen and (max-width: 1200px){
+.single-personal-info .second-item{
   z-index: -1;
+}
 }
 
 

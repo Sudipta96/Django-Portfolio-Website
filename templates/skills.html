@@ -6,7 +6,7 @@
 {% block content %}
 
 <!-- skill section -->
-<section class="skill-section section py-5" id="skills">
+<section class="skill-section py-5" id="skills">
   <div class="container">
     <div class="row my-5">
       <div class="col-12 section-title text-center">
@@ -39,7 +39,7 @@
         <div class="col-5 single-personal-info text-center px-4">
           <div class="p-3 first-item outer-shadow hover-in-shadow text-right">
             <small class="session">{{ training.session }}</small>
-            <h6 class="name my-2">{{ training.title }}</h5>
+            <h6 class="name my-2">{{ training.title }}</h6>
             <small class="detail">{{ training.training_detail }}</small>
           </div>
         </div>
@@ -56,7 +56,7 @@
           <div class="col-5 single-personal-info text-center">
             <div class="p-3 second-item outer-shadow hover-in-shadow text-left">
               <small class="session">{{ training.session }}</small>
-              <h6 class="name my-2">{{ training.title }}</h5>
+              <h6 class="name my-2">{{ training.title }}</h6>
               <small class="detail">{{ training.training_detail }}</small>
             </div>
           </div>
@@ -72,8 +72,10 @@
         <div class="col-5 single-personal-info text-center px-4">
             <div class="p-3 first-item outer-shadow hover-in-shadow text-right">
               <small class="session">{{ degree.session }}</small>
-              <h6 class="name my-2">{{ degree.degree_title }}</h5>
-              <small class="detail">{{ degree.description }}</small>
+              <h6 class="name my-2">{{ degree.degree_title }}</h6>
+              <h6 class="name my-2">{{ degree.institution_name }}</h6>
+              <small class="detail">{{ degree.description }}</small><br>
+              <small class="detail">{{ degree.result }}</small>
             </div>
         </div>
 
@@ -88,8 +90,10 @@
         <div class="col-5 single-personal-info text-center">
           <div class="p-3 second-item outer-shadow hover-in-shadow text-left">
             <small class="session">{{ degree.session }}</small>
-            <h6 class="name my-2">{{ degree.degree_title }}</h5>
-            <small class="detail">{{ degree.description }}</small>
+            <h6 class="name my-2">{{ degree.degree_title }}</h6>
+            <h6 class="name my-2">{{ degree.institution_name }}</h6>
+            <small class="detail">{{ degree.description }}</small><br>
+            <small class="detail">{{ degree.result }}</small>
           </div>
         </div>
         {% endif %}
