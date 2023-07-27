@@ -35,7 +35,6 @@ if DEBUG == "True":
 else:
     ALLOWED_HOSTS = ['.vercel.app', '.now.sh', "sudiptasarker.xyz", "www.sudiptasarker.xyz", "localhost",]
 
-print(ALLOWED_HOSTS)
 
 # Application definition
 
