@@ -8,13 +8,13 @@ let activeNav = localStorage.getItem('active-nav');
 
 /* ---------- Loading theme and color style -------------------*/
 
-if(theme == null){
-    theme = "/static/css/light.css"
-    swapStyleSheet(theme);
-}
-else{
-    swapStyleSheet(theme);
-}
+// if(theme == null){
+//     theme = "/static/css/light.css"
+//     swapStyleSheet(theme);
+// }
+// else{
+//     swapStyleSheet(theme);
+// }
 
 
 if (colorStyle == null){
@@ -31,24 +31,57 @@ styleIcon = document.getElementById('style-switcher-icon');
 style = document.getElementById('style');
 themeBtn = document.getElementsByClassName('theme-switcher');
 
-function swapStyleSheet(sheet){
-    style.setAttribute('href', sheet);
-    localStorage.setItem('theme', sheet);
+// function swapStyleSheet(sheet){
+//     style.setAttribute('href', sheet);
+//     localStorage.setItem('theme', sheet);
+// }
+
+// themeSwitcher.onclick = function (){
+//     if (lightdarkIcon.classList.contains('fa-sun')){
+//         lightdarkIcon.classList.remove('fa-sun');
+//         lightdarkIcon.classList.add('fa-moon');
+//         swapStyleSheet("/static/css/light.css");
+
+//     }
+//     else if(lightdarkIcon.classList.contains('fa-moon')){
+//         lightdarkIcon.classList.remove('fa-moon');
+//         lightdarkIcon.classList.add('fa-sun');
+//         swapStyleSheet("/static/css/dark.css");
+//     }
+
+// };
+
+const modeToggleBtn = document.getElementById('theme-switcher');
+
+let isLightMode = localStorage.getItem('lightMode') === 'true';
+
+
+function applyStyleSheet() {
+    const stylesheet = isLightMode ? '/static/css/light.css' : '/static/css/dark.css';
+    document.getElementById('style-sheet').setAttribute('href', stylesheet);
 }
 
-themeSwitcher.onclick = function (){
+applyStyleSheet();
+
+function changeThemeSwitcherBtnIcon(){
     if (lightdarkIcon.classList.contains('fa-sun')){
-        lightdarkIcon.classList.remove('fa-sun');
-        lightdarkIcon.classList.add('fa-moon');
-        swapStyleSheet("/static/css/light.css");
-    }
+    lightdarkIcon.classList.remove('fa-sun');
+    lightdarkIcon.classList.add('fa-moon');
+}
     else if(lightdarkIcon.classList.contains('fa-moon')){
         lightdarkIcon.classList.remove('fa-moon');
         lightdarkIcon.classList.add('fa-sun');
-        swapStyleSheet("/static/css/dark.css");
     }
+}
 
-};
+
+modeToggleBtn.addEventListener('click', () => {
+    isLightMode = !isLightMode;
+    localStorage.setItem('lightMode', isLightMode);
+    applyStyleSheet();
+    changeThemeSwitcherBtnIcon();
+});
+
 
 
 
