@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<title>{% block title %} Skills {% endblock title %}</title>
+
+{% block content %}
+
+<!-- skill section -->
+<section class="skill-section py-5" id="skills">
+  <div class="container">
+    <div class="row my-5">
+      <div class="col-12 section-title text-center">
+        <button id="skills-btn" class="btn active-color">Skills</button>
+        <button id="training-btn" class="btn mx-2">Training</button>
+        <button id="education-btn" class="btn">Education</button>
+      </div>
+    </div>
+
+    <!-- skill -->
+    <div class="row my-5" id="skill">
+      {% for skill in skills %}
+       <div class="col-md-6 mb-3 text-center">
+         <div class="d-flex justify-content-between">
+           <h5 class="skill-name text-capitalize">{{skill.skill_name}}</h5>
+            <h5 class="skill-percent">{{ skill.percentage}}</h5>
+         </div>
+         <div class="progress">
+           <div class="progress-bar" role="progressbar" style="width:{{skill.percentage}};" aria-valuenow="" aria-valuemin="0" aria-valuemax="100"></div>
+         </div>
+       </div>
+      {% endfor %}
+    </div>
+    <!-- end skill  -->
+
+    <!--  Training -->
+    <div class="row mt-5 d-none" id="training">
+       {% for training in training_infos %}
+         {% if training.before_divider %}
+        <div class="col-5 single-personal-info text-center px-4">
+          <div class="p-3 first-item outer-shadow hover-in-shadow text-right">
+            <small class="session">{{ training.session }}</small>
+            <h6 class="name my-2">{{ training.title }}</h6>
+            <small class="detail">{{ training.training_detail }}</small>
+          </div>
+        </div>
+
+         <!-- vertical divider -->
+         <div class="col-1 text-center divider">
+           <span class="divider-icon">
+             <i class="fas fa-briefcase"></i>
+           </span>
+         </div>
+         <!-- vertical divider -->
+
+         {% else %}
+          <div class="col-5 single-personal-info text-center">
+            <div class="p-3 second-item outer-shadow hover-in-shadow text-left">
+              <small class="session">{{ training.session }}</small>
+              <h6 class="name my-2">{{ training.title }}</h6>
+              <small class="detail">{{ training.training_detail }}</small>
+            </div>
+          </div>
+        {% endif %}
+       {% endfor %}
+     </div>
+    <!-- end training  -->
+
+    <!--  Education  -->
+    <div class="row mt-5 d-none" id="education">
+      {% for degree in edu_infos %}
+         {% if degree.before_divider %}
+        <div class="col-5 single-personal-info text-center px-4">
+            <div class="p-3 first-item outer-shadow hover-in-shadow text-right">
+              <small class="session">{{ degree.session }}</small>
+              <h6 class="name my-2">{{ degree.degree_title }}</h6>
+              <h6 class="name my-2">{{ degree.institution_name }}</h6>
+              <small class="detail">{{ degree.description }}</small><br>
+              <small class="detail">{{ degree.result }}</small>
+            </div>
+        </div>
+
+        <!-- vertical divider -->
+        <div class="col-1 divider">
+          <span class="divider-icon">
+            <i class="fas fa-graduation-cap"></i>
+          </span>
+        </div>
+        <!-- vertical divider -->
+         {% else %}
+        <div class="col-5 single-personal-info text-center">
+          <div class="p-3 second-item outer-shadow hover-in-shadow text-left">
+            <small class="session">{{ degree.session }}</small>
+            <h6 class="name my-2">{{ degree.degree_title }}</h6>
+            <h6 class="name my-2">{{ degree.institution_name }}</h6>
+            <small class="detail">{{ degree.description }}</small><br>
+            <small class="detail">{{ degree.result }}</small>
+          </div>
+        </div>
+        {% endif %}
+       {% endfor %}
+    </div>
+    <!-- end education  -->
+  </div>
+</section>
+<!-- end of skill section -->
+
+{% endblock %}
+{% block js %}
+<script src="{% static 'js/skills.js' %}"></script>
+{% endblock js %}

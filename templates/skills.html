@@ -32,79 +32,96 @@
     </div>
     <!-- end skill  -->
 
-    <!--  Training -->
-    <div class="row mt-5 d-none" id="training">
-       {% for training in training_infos %}
-         {% if training.before_divider %}
-        <div class="col-5 single-personal-info text-center px-4">
-          <div class="p-3 first-item outer-shadow hover-in-shadow text-right">
-            <small class="session">{{ training.session }}</small>
-            <h6 class="name my-2">{{ training.title }}</h6>
-            <small class="detail">{{ training.training_detail }}</small>
-          </div>
-        </div>
-
-         <!-- vertical divider -->
-         <div class="col-1 text-center divider">
-           <span class="divider-icon">
-             <i class="fas fa-briefcase"></i>
-           </span>
-         </div>
-         <!-- vertical divider -->
-
-         {% else %}
-          <div class="col-5 single-personal-info text-center">
-            <div class="p-3 second-item outer-shadow hover-in-shadow text-left">
-              <small class="session">{{ training.session }}</small>
-              <h6 class="name my-2">{{ training.title }}</h6>
-              <small class="detail">{{ training.training_detail }}</small>
+    <!-- training start -->
+     <div class="row mt-2 d-none" id="training">
+      <div class="training tab-content">
+        <div class="row">
+          <div class="timeline">
+            <div class="row">
+              <!-- timeline item start -->
+              {% for training in training_infos %}
+               <div class="timeline-item">
+                  <div class="timeline-item-inner outer-shadow hover-in-shadow">
+                     <i class="fas fa-briefcase icon"></i>
+                      <span>{{ training.session }}</span>
+                      <h3>{{ training.title }}</h3>
+                      <h4>{{ training.training_center }}</h4>
+                      <p>{{ training.training_detail }}</p>
+                    </div>
+               </div>
+              {% endfor %}
+              <!-- timeline item end -->
+              <!-- timeline item start -->
+              <!-- <div class="timeline-item">
+                <div class="timeline-item-inner outer-shadow hover-in-shadow">
+                   <i class="fas fa-briefcase icon"></i>
+                    <span>Sep, 2018 - Present</span>
+                    <h3>Lorem ipsum dolor sit amet.</h3>
+                    <h4>Comany : Lorem ipsum dolor sit amet.</h4>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, necessitatibus!</p>
+                </div>
+             </div> -->
+            <!-- timeline item end -->
             </div>
           </div>
-        {% endif %}
-       {% endfor %}
+        </div>
+      </div>
      </div>
-    <!-- end training  -->
+    <!-- training end -->
 
-    <!--  Education  -->
-    <div class="row mt-5 d-none" id="education">
-      {% for degree in edu_infos %}
-         {% if degree.before_divider %}
-        <div class="col-5 single-personal-info text-center px-4">
-            <div class="p-3 first-item outer-shadow hover-in-shadow text-right">
-              <small class="session">{{ degree.session }}</small>
-              <h6 class="name my-2">{{ degree.degree_title }}</h6>
-              <h6 class="name my-2">{{ degree.institution_name }}</h6>
-              <small class="detail">{{ degree.description }}</small><br>
-              <small class="detail">{{ degree.result }}</small>
+    <!-- education start -->
+    <div class="row mt-2 d-none" id="education">
+      <div class="education tab-content">
+        <div class="row">
+          <div class="timeline">
+            <div class="row">
+              
+              <!-- timeline item start -->
+
+              {% for degree in edu_infos %}
+               <div class="timeline-item">
+                  <div class="timeline-item-inner outer-shadow hover-in-shadow">
+                     <i class="fas fa-graduation-cap icon"></i>
+                      <span>{{ degree.session }}</span>
+                      <h3>{{  degree.degree_title }}</h3>
+                      <h4>{{ degree.institution_name }}</h4>
+                      <p>{{ degree.description }}</p>
+                      <p>{{ degree.result }}</p>
+                      
+                  </div>
+               </div>
+              {% endfor %}
+              <!-- timeline item end -->
+              <!-- timeline item start -->
+              <!-- <div class="timeline-item">
+                <div class="timeline-item-inner outer-shadow hover-in-shadow">
+                   <i class="fas fa-graduation-cap icon"></i>
+                    <span>Sep, 2018 - Present</span>
+                    <h3>Lorem ipsum dolor sit amet.</h3>
+                    <h4>Comany : Lorem ipsum dolor sit amet.</h4>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, necessitatibus!</p>
+                </div>
+             </div> -->
+            <!-- timeline item end -->
             </div>
-        </div>
-
-        <!-- vertical divider -->
-        <div class="col-1 divider">
-          <span class="divider-icon">
-            <i class="fas fa-graduation-cap"></i>
-          </span>
-        </div>
-        <!-- vertical divider -->
-         {% else %}
-        <div class="col-5 single-personal-info text-center">
-          <div class="p-3 second-item outer-shadow hover-in-shadow text-left">
-            <small class="session">{{ degree.session }}</small>
-            <h6 class="name my-2">{{ degree.degree_title }}</h6>
-            <h6 class="name my-2">{{ degree.institution_name }}</h6>
-            <small class="detail">{{ degree.description }}</small><br>
-            <small class="detail">{{ degree.result }}</small>
           </div>
         </div>
-        {% endif %}
-       {% endfor %}
-    </div>
-    <!-- end education  -->
+      </div>
+     </div>
+    <!-- training end -->
+
+
+
+
+   
   </div>
 </section>
 <!-- end of skill section -->
 
 {% endblock %}
 {% block js %}
+<script>
+   
+</script>
 <script src="{% static 'js/skills.js' %}"></script>
 {% endblock js %}

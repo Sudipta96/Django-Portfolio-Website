@@ -539,6 +539,130 @@ box-shadow: var(--inner-shadow) !important;
   background: currentColor;
 }
 
+.skill-section .education,
+.skill-section .training{
+   padding-bottom: 80px;
+}
+.skill-section .timeline{
+  flex:0 0 100%;
+  max-width: 100%;
+  position: relative;
+}
+.skill-section .timeline:before{
+  content: '';
+  width: 1px;
+  height: 100%;
+  left: 50%;
+  top: 0;
+  background-color: var(--bg-black-100);
+  position: absolute;
+}
+.skill-section .timeline .timeline-item{
+  /* background-color: #000; */
+  flex: 0 0 100%;
+  max-width: 100%;
+  padding: 0 15px;
+}
+.skill-section .timeline .timeline-item:nth-child(odd){
+  padding-right: calc(50% + 50px);
+  text-align: right;
+}
+.skill-section .timeline .timeline-item:nth-child(even){
+  padding-left: calc(50% + 50px);
+}
+
+.skill-section .timeline .timeline-item-inner{
+  padding: 30px;
+  border-radius: 5px;
+  position: relative;
+  z-index: 1;
+}
+
+.skill-section .timeline .timeline-item-inner:before{
+  content: '';
+  position: absolute;
+  width: 30px;
+  height: 1px;
+  background-color: var(--bg-black-100);
+  top: 37px;
+  z-index: -1;
+}
+.skill-section .timeline .timeline-item:nth-child(odd) .timeline-item-inner:before{
+  right: -30px;
+}
+.skill-section .timeline .timeline-item:nth-child(even) .timeline-item-inner:before{
+  left: -30px;
+}
+
+.skill-section .timeline .timeline-item-inner .icon{
+  height: 40px;
+  width: 40px;
+  background-color: var(--bg-black-50);
+  text-align: center;
+  border: 1px solid var(--bg-black-100);
+  border-radius: 50%;
+  font-size: 16px;
+  color: var(--skin-color);
+  line-height: 40px;
+  position: absolute;
+  top: 18px;
+}
+.skill-section .timeline .timeline-item:nth-child(odd) .icon{
+  right: -72px;
+}
+.skill-section .timeline .timeline-item:nth-child(even) .icon{
+  left: -72px;
+}
+.skill-section .timeline .timeline-item-inner span {
+  font-weight: 500;
+  color: var(--skin-color);
+  display: block;
+  margin: 0 0 10px;
+  text-transform: capitalize;
+}
+
+.skill-section .timeline .timeline-item-inner h3{
+  font-size: 20px;
+  color: var(--text-black-700);
+  font-weight: 600;
+  margin: 0 0 5px;
+  text-transform: capitalize;
+}
+
+.skill-section .timeline .timeline-item-inner h4{
+  font-size: 16px;
+  color: var(--text-black-700);
+  font-weight: 600;
+  margin: 5px 0;
+}
+
+.skill-section .timeline .timeline-item-inner p{
+  font-size: 16px;
+  color: var(--text-black-600);
+  line-height: 26px;
+  margin: 15px 0 0;
+}
+
+@media screen and (max-width: 576px){
+  .skill-section .timeline:before{
+    display: none;
+  }
+  .skill-section .timeline .timeline-item-inner:before{
+    display: none;
+  }
+  .skill-section .timeline .timeline-item:nth-child(odd){
+    padding: 20px 50px;
+    /* text-align: left; */
+    text-align: justify;
+  }
+  .skill-section .timeline .timeline-item:nth-child(even){
+    padding: 20px 50px;
+    /* text-align: left; */
+    text-align: justify;
+  }
+  
+  }
+
 /*------------ skill section end --------------------- */
 
 /*------------ service section-------------------- */
@@ -807,7 +931,7 @@ box-shadow: var(--inner-shadow) !important;
   top: 120px;
   right: 0;
   text-align: right;
-  z-index: 1;
+  z-index: 999;
 }
 
 .themes .theme-switcher{
@@ -899,3 +1023,6 @@ box-shadow: var(--inner-shadow) !important;
 
 
 /* ------------./light dark theme----------------------------- */
+.not-visible{
+  display: none;
+}

@@ -955,3 +955,6 @@ li a.active{
 
 
 /* ---------./theme-------------------------------- */
+.not-visible{
+  display: none;
+}
