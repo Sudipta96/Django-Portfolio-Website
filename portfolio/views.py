@@ -17,7 +17,7 @@ def index(request):
             return redirect('portfolio:index')
     else:
         form = ContactForm()
-        biodata = Biodata.objects.last()
+        biodata = Biodata.objects.order_by('-created_at').first()
         skills = Skill.objects.all()
         training_infos = Training.objects.all().order_by('-timestamp')
         edu_infos = Education.objects.all().order_by('-timestamp')
@@ -77,6 +77,7 @@ def portfolio(request):
 def contact(request):
     form = ContactForm(request.POST or None)
     if request.method == 'POST':
+        EMAIL_HOST_USER = "NEW USER"
         if form.is_valid():
             form.save()
             receiver = form.cleaned_data.get('sent_by')
