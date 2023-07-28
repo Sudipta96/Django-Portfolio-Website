@@ -1,0 +1,1 @@
+console.log("This is inside staticfiles_build folder")
