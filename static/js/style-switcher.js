@@ -1,6 +1,3 @@
-
-
-
 let skinColor = document.getElementById('skin-color');
 let theme = localStorage.getItem('theme');
 let colorStyle = localStorage.getItem('color-style');
@@ -8,13 +5,6 @@ let activeNav = localStorage.getItem('active-nav');
 
 /* ---------- Loading theme and color style -------------------*/
 
-// if(theme == null){
-//     theme = "/static/css/light.css"
-//     swapStyleSheet(theme);
-// }
-// else{
-//     swapStyleSheet(theme);
-// }
 
 
 if (colorStyle == null){
@@ -25,31 +15,8 @@ else{
 }
 
 
-themeSwitcher = document.getElementById('light-switcher-btn');
 lightdarkIcon = document.getElementById('light-dark-icon');
 styleIcon = document.getElementById('style-switcher-icon');
-style = document.getElementById('style');
-themeBtn = document.getElementsByClassName('theme-switcher');
-
-// function swapStyleSheet(sheet){
-//     style.setAttribute('href', sheet);
-//     localStorage.setItem('theme', sheet);
-// }
-
-// themeSwitcher.onclick = function (){
-//     if (lightdarkIcon.classList.contains('fa-sun')){
-//         lightdarkIcon.classList.remove('fa-sun');
-//         lightdarkIcon.classList.add('fa-moon');
-//         swapStyleSheet("/static/css/light.css");
-
-//     }
-//     else if(lightdarkIcon.classList.contains('fa-moon')){
-//         lightdarkIcon.classList.remove('fa-moon');
-//         lightdarkIcon.classList.add('fa-sun');
-//         swapStyleSheet("/static/css/dark.css");
-//     }
-
-// };
 
 const modeToggleBtn = document.getElementById('theme-switcher');
 
