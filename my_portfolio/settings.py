@@ -30,6 +30,8 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 DEBUG = os.environ.get("DEBUG")
 
+print(DEBUG)
+
 if DEBUG == "True":
     ALLOWED_HOSTS = []
 else:
@@ -51,7 +53,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    "whitenoise.middleware.WhiteNoiseMiddleware", # production
+    # "whitenoise.middleware.WhiteNoiseMiddleware", # production
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -158,9 +160,13 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+]
+
 if DEBUG == "True":
-    # STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
-    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+    STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
 else:
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
     # STATIC_ROOT = os.path.join(BASE_DIR, 'static')
