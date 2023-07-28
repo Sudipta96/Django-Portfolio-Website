@@ -21,16 +21,16 @@ echo "List of installed Python packages:"
 pip list
 
 # 5. Uninstall packages from requirements.txt with mentioned versions
-if [ -f "requirements.txt" ]; then
-    while IFS= read -r line; do
-        package_name=$(echo "$line" | cut -d'=' -f1)
-        package_version=$(echo "$line" | cut -d'=' -f2)
-        if pip show "$package_name" | grep -q "Version: $package_version"; then
-            echo "Uninstalling existing package $package_name==$package_version"
-            pip uninstall -y "$package_name"=="$package_version"
-        fi
-    done < requirements.txt
-fi
+# if [ -f "requirements.txt" ]; then
+#     while IFS= read -r line; do
+#         package_name=$(echo "$line" | cut -d'=' -f1)
+#         package_version=$(echo "$line" | cut -d'=' -f2)
+#         if pip show "$package_name" | grep -q "Version: $package_version"; then
+#             echo "Uninstalling existing package $package_name==$package_version"
+#             pip uninstall -y "$package_name"=="$package_version"
+#         fi
+#     done < requirements.txt
+# fi
 
 # 6. Create virtualenv "venv" if not exist
 if [ ! -d "venv" ]; then
@@ -42,18 +42,23 @@ fi
 source venv/bin/activate
 echo "Virtual environment 'venv' activated."
 
+python3.9 -m pip install --upgrade pip
+echo "pip upgraded"
+
 # 8. Install packages from requirements.txt
-if [ -f "requirements.txt" ]; then
-    while IFS= read -r line; do
-        package_name=$(echo "$line" | cut -d'=' -f1)
-        package_version=$(echo "$line" | cut -d'=' -f2)
-        if pip show "$package_name" | grep -q "Version: $package_version"; then
-            echo "Package $package_name==$package_version already installed."
-        else
-            pip install "$package_name==$package_version"
-        fi
-    done < requirements.txt
-fi
+pip install -r requirements.txt
+
+# if [ -f "requirements.txt" ]; then
+#     while IFS= read -r line; do
+#         package_name=$(echo "$line" | cut -d'=' -f1)
+#         package_version=$(echo "$line" | cut -d'=' -f2)
+#         if pip show "$package_name" | grep -q "Version: $package_version"; then
+#             echo "Package $package_name==$package_version already installed."
+#         else
+#             pip install "$package_name==$package_version"
+#         fi
+#     done < requirements.txt
+# fi
 
 # 9. Run Django migrations and collect static files
 python3.9 manage.py migrate
@@ -65,7 +70,7 @@ python3.9 manage.py collectstatic --no-input
 
 
 
-
+echo "End"
 
 
 
@@ -81,3 +86,5 @@ python3.9 manage.py collectstatic --no-input
 # pip install -r requirements.txt
 # python3.9 manage.py migrate 
 # python3.9 manage.py collectstatic --no-input
+
+echo "End after commented code"
