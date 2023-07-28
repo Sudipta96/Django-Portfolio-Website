@@ -51,6 +51,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware", # production
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -158,7 +159,8 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 if DEBUG == "True":
-    STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
+    # STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 else:
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
     # STATIC_ROOT = os.path.join(BASE_DIR, 'static')
