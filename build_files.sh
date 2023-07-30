@@ -26,28 +26,30 @@ pip install -r requirements.txt
 python3.9 manage.py migrate
 python3.9 manage.py collectstatic --no-input
 
+
+echo "Setup complete"
+
 echo "current path"
 pwd
 # echo "trying to list out /vercel/path0/ directory"
 # ls -alh /vercel/path0/
+
 echo "check who is the current user"
 whoami
 
 # echo "trying to list out directory under /var/task directory"
 # find /var/task -type d -ls
 
-# creating media folder inside /var/task
+# # creating media folder inside /var/task
 echo "creating media folder inside /var/task"
 mkdir /var/task/media
 
-echo "checking media folder is created inside /var/task/ directory or not"
-find /var/task -type d -ls
+# echo "checking media folder is created inside /var/task/ directory or not"
+# # find /var/task -type d -ls
 
-# changing permission of /var/task/media directory
+# # changing permission of /var/task/media directory
 echo "changing permission of /var/task/media directory"
 chmod -R 777 /var/task/media
 
-# echo "checking media folder permissions after changing permissions"
-find /var/task -type d -ls
-
-echo "Setup complete"
+echo "checking media folder permissions after changing permissions"
+find /var/task/media -ls
