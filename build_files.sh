@@ -48,8 +48,10 @@ mkdir /var/task/media
 # # find /var/task -type d -ls
 
 # # changing permission of /var/task/media directory
-echo "changing permission of /var/task/media directory"
-chmod -R 777 /var/task/media
+echo "changing permission of /var/task/media/ directory"
+chmod -R 777 /var/task/media/
+echo "create test.txt file"
+touch /var/task/media/test.txt
 
 echo "checking media folder permissions after changing permissions"
-find /var/task/media -ls
+find /var/task/media/ -ls
