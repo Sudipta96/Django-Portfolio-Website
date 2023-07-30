@@ -159,10 +159,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
-if DEBUG == "True":
-    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-else:
-    MEDIA_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'media')
+# if DEBUG == "True":
+#     MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# else:
+#     MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 STATICFILES_FINDERS = [

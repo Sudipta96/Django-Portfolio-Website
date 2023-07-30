@@ -32,21 +32,21 @@ pwd
 # ls -alh /vercel/path0/
 
 
-# echo "trying to list out directory under /var/task directory"
-# find /var/task -type f -ls
+echo "trying to list out directory under /var/task directory"
+find /var/task -type f -ls
 
-# # creating media folder inside /var/task
-# echo "creating media folder inside /var/task"
-# sudo mkdir /var/task/media
+# creating media folder inside /var/task
+echo "creating media folder inside /var/task"
+sudo mkdir /var/task/media
 
-# # echo "checking media folder is created inside /var/task/ directory or not"
-# find /var/task -type d -ls
+# echo "checking media folder is created inside /var/task/ directory or not"
+find /var/task -type d -ls
 
-# # changing permission of /var/task/media directory
-# echo "changing permission of /var/task/media directory"
-# sudo chmod -R 777 /var/task/media
+# changing permission of /var/task/media directory
+echo "changing permission of /var/task/media directory"
+sudo chmod -R 777 /var/task/media
 
-# # echo "checking media folder permissions after changing permissions"
-# find /var/task -type d -ls
+# echo "checking media folder permissions after changing permissions"
+find /var/task -type d -ls
 
 echo "Setup complete"
