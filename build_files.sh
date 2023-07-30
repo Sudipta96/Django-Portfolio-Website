@@ -52,13 +52,15 @@ mkdir /var/task/media
 adduser alpha
 echo "added user alpha"
 
+groupadd webusers
+echo "group name webusers created"
 #usermod -aG sudo alpha
 
-usermod -aG www-data alpha 
+usermod -aG webusers alpha 
 echo "added user alpha to www-data group"
 
 
-chgrp -R www-data /var/task/media/
+chgrp -R webusers /var/task/media/
 echo "group changed of /var/task/media/ "
 # cd /var/task/media/
 
