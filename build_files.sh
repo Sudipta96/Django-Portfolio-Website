@@ -17,6 +17,12 @@ pwd
 echo "trying to list out /vercel/path0/ directory"
 ls -alh /vercel/path0/
 
+echo "trying to list out directory under /var/task directory"
+find /var/task -type d -ls
+echo "trying to list out directory under /var/task directory"
+find /var/task -type f -ls
+
+
 # 7. Activate the virtual environment
 source venv/bin/activate
 echo "Virtual environment 'venv' activated."
