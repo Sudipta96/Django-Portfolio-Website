@@ -40,18 +40,40 @@ whoami
 # echo "trying to list out directory under /var/task directory"
 # find /var/task -type d -ls
 
+# find www-data group exists or not
+echo "find www-data group exists or not"
+getent group | grep www-data
+
+
 # # creating media folder inside /var/task
 echo "creating media folder inside /var/task"
 mkdir /var/task/media
+
+adduser alpha
+echo "added user alpha"
+
+#usermod -aG sudo alpha
+
+usermod -aG www-data alpha 
+echo "added user alpha to www-data group"
+
+
+chgrp -R www-data /var/task/media/
+echo "group changed of /var/task/media/ "
+# cd /var/task/media/
+
+# ls -alh 
+
+echo "changing permission of /var/task/media/ directory"
+chmod -R 777 /var/task/media/
 
 # echo "checking media folder is created inside /var/task/ directory or not"
 # # find /var/task -type d -ls
 
 # # changing permission of /var/task/media directory
-echo "changing permission of /var/task/media/ directory"
-chmod -R 777 /var/task/media/
-echo "create test.txt file"
-touch /var/task/media/test.txt
+# chmod -R 777 /var/task/media/
+# echo "create test.txt file"
+# touch /var/task/media/test.txt
 
 echo "checking media folder permissions after changing permissions"
 find /var/task/media/ -ls
