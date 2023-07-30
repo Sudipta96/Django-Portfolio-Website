@@ -4,8 +4,7 @@
 echo "List of installed Python packages:"
 pip list
 
-echo "current path"
-pwd
+
 
 # 6. Create virtualenv "venv" if not exist
 if [ ! -d "venv" ]; then
@@ -13,8 +12,10 @@ if [ ! -d "venv" ]; then
     echo "Virtual environment 'venv' created."
 fi
 
-echo "echo current path after deployment"
-pwd 
+echo "current path"
+pwd
+echo "trying to list out /vercel/path0/ directory"
+ls -alh /vercel/path0/
 
 # 7. Activate the virtual environment
 source venv/bin/activate
