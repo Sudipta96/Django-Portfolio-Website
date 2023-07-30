@@ -12,17 +12,6 @@ if [ ! -d "venv" ]; then
     echo "Virtual environment 'venv' created."
 fi
 
-echo "current path"
-pwd
-echo "trying to list out /vercel/path0/ directory"
-ls -alh /vercel/path0/
-
-echo "trying to list out directory under /var/task directory"
-find /var/task -type d -ls
-echo "trying to list out directory under /var/task directory"
-find /var/task -type f -ls
-
-
 # 7. Activate the virtual environment
 source venv/bin/activate
 echo "Virtual environment 'venv' activated."
@@ -36,5 +25,28 @@ pip install -r requirements.txt
 # 9. Run Django migrations and collect static files
 python3.9 manage.py migrate
 python3.9 manage.py collectstatic --no-input
+
+echo "current path"
+pwd
+# echo "trying to list out /vercel/path0/ directory"
+# ls -alh /vercel/path0/
+
+
+# echo "trying to list out directory under /var/task directory"
+# find /var/task -type f -ls
+
+# # creating media folder inside /var/task
+# echo "creating media folder inside /var/task"
+# sudo mkdir /var/task/media
+
+# # echo "checking media folder is created inside /var/task/ directory or not"
+# find /var/task -type d -ls
+
+# # changing permission of /var/task/media directory
+# echo "changing permission of /var/task/media directory"
+# sudo chmod -R 777 /var/task/media
+
+# # echo "checking media folder permissions after changing permissions"
+# find /var/task -type d -ls
 
 echo "Setup complete"

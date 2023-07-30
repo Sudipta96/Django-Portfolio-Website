@@ -162,7 +162,8 @@ MEDIA_URL = '/media/'
 if DEBUG == "True":
     MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 else:
-    MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles')
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'media')
+
 
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
