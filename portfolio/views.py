@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import *
 from .forms import ContactForm
 from django.contrib import messages
+from django.conf import settings
 # Create your views here.
 
 
@@ -33,7 +34,7 @@ def index(request):
         'edu_infos': edu_infos,
         'services': services,
         'categories': categories,
-        'projects': projects
+        'projects': projects,
     }
     return render(request, 'index.html', context=context)
 

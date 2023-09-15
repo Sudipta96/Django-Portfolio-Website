@@ -72,7 +72,7 @@ class Catagory(models.Model):
 class Project(models.Model):
     catagory = models.ForeignKey(Catagory, on_delete=models.CASCADE)
     project_title = models.CharField(max_length=255)
-    project_image = models.ImageField(upload_to='img/project/project_image')
+    project_image = models.ImageField(upload_to='img/projects/')
     project_brief = models.TextField()
     technologies = models.TextField()
     web_url = models.URLField(blank=True)
@@ -85,7 +85,7 @@ class Project(models.Model):
 class Feature(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
     feature_title = models.CharField(max_length=255)
-    feature_image = models.ImageField(upload_to='img/project/feature')
+    feature_image = models.ImageField(upload_to='img/projects/')
 
     def __str__(self):
         return self.feature_title

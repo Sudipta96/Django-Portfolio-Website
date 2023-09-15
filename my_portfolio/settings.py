@@ -10,7 +10,6 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
-import mimetypes
 import os
 # from dotenv import load_dotenv
 from dotenv import load_dotenv
@@ -49,6 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'portfolio',
+
 ]
 
 MIDDLEWARE = [
@@ -151,30 +151,73 @@ USE_TZ = True
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
-# mimetypes.add_type("text/css", ".css", True)
 
-STATIC_URL = '/static/'
-MEDIA_URL = '/media/'
+# STATIC_URL = '/static/'
+# MEDIA_URL = '/media/'
+
+# django >= 4.2
+# STORAGES = {"default": {
+#                     "BACKEND": "storages.backends.s3boto3.S3Boto3Storage"
+#             },
+#             "staticfiles": {
+#                     "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+#             },
+#         }
+
+# AWS CREDENTIALS
+# AWS_S3_ACCESS_KEY_ID = os.environ.get("AWS_S3_ACCESS_KEY_ID")
+# AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
+# AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_STORAGE_BUCKET_NAME")
+# AWS_S3_REGION_NAME = os.environ.get("AWS_S3_REGION_NAME")
+# AWS_QUERYSTRING_EXPIRE = 600
+
+USE_S3 = os.getenv('USE_S3') == 'TRUE'
+
+if USE_S3:
+    # aws settings
+    AWS_ACCESS_KEY_ID = os.environ.get('AWS_S3_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+    AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
+    AWS_DEFAULT_ACL = "public-read"
+    AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+    AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
+    # s3 static settings
+    STATIC_LOCATION = 'static'
+    STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATIC_LOCATION}/'
+    STATICFILES_STORAGE = "my_portfolio.storages.StaticStorage"
+    # 'hello_django.storage_backends.StaticStorage
+    # s3 public media settings
+    PUBLIC_MEDIA_LOCATION = 'media'
+    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/'
+    DEFAULT_FILE_STORAGE = 'my_portfolio.storages.PublicMediaStorage'
+    # s3 private media settings
+    # PRIVATE_MEDIA_LOCATION = 'private'
+    # PRIVATE_FILE_STORAGE = 'hello_django.storage_backends.PrivateMediaStorage'
+else:
+    STATIC_URL = '/static/'
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+    MEDIA_URL = '/media/'
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
+
+import mimetypes
+mimetypes.add_type("text/css", ".css", True)
+
 
 # if DEBUG == "True":
 #     MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # else:
 #     MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
-STATICFILES_FINDERS = [
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-]
+# if DEBUG == "True":
+#     STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
+# else:
+#     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
+ 
 
-if DEBUG == "True":
-    STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
-else:
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
-    # STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-    # STATIC_ROOT = os.path.join(BASE_DIR, 'static')
