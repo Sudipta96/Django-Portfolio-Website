@@ -1,401 +1,449 @@
- {% extends 'base.html' %}
- {% load static %}
- {% block content %}
-        <!-- header section -->
-           <div class="container home-section py-5">
-             <div class="row">
-              {% for message in messages %}
-                  <div class="col-10 mx-auto text-center message w-50 mb-4 alert text-{{ message.tags }} alert-dismissible" role="alert" >
-                    <button type="button" class="close-btn close" data-dismiss="alert" aria-label="Close">
-                      <i class="fas fa-times text-{{ message.tags }}"></i>
-                    </button>
-                    {{ message }}
-                  </div>
-               {% endfor %}
+{% extends 'base.html' %} {% load static %} {% block content %}
+<!-- header section -->
+<div class="container home-section py-5">
+  <div class="row">
+    {% for message in messages %}
+    <div
+      class="col-10 mx-auto text-center message w-50 mb-4 alert text-{{ message.tags }} alert-dismissible"
+      role="alert"
+    >
+      <button
+        type="button"
+        class="close-btn close"
+        data-dismiss="alert"
+        aria-label="Close"
+      >
+        <i class="fas fa-times text-{{ message.tags }}"></i>
+      </button>
+      {{ message }}
+    </div>
+    {% endfor %}
 
-                <div class="col-md-6 d-flex align-self-center justify-content-center">
-                  <div class="home-text">
-                     <p class="text-success">Hi</p>
-                     <h2>I'm Sudipta Sarker</h2>
-                     <h1 class="text-capitlize">Full Stack Developer</h1>
-                     <div class="more-about">
-                         <a href="#about" class="text-center mt-4 link-item btn-1 outer-shadow hover-in-shadow">More About Me</a>
-                     </div>
-                  </div>
-                </div>
-                <div class="col-md-6 mt-4">
-                 <div class="img-box">
-                   <!-- <img src="{{ bio.profile_pic.url }}" alt="profile-pic"> -->
-                   <img src="{% static 'img/profile_image.png' %}" alt="profile-pic">
-                 </div>
-                </div>
-             </div>
-           </div>
-          <!-- end of header -->
-
-       <!-- about section start -->
-       <section id="about" class="about-section py-5">
-          <div class="container">
-             <div class="row">
-               <div class="col-12 text-center mb-4">
-                <h5>MAIN INFO</h5>
-                <h1 style="font-weight:500;">ABOUT ME</h1>
-               </div>
-
-               <div class="col-12">
-                 <div class="row">
-                    <div class="col-md-6 text-center mt-4">
-                      <div class="row">
-                        <div class="col-12 img-box1">
-                          <img src="{% static 'img/profile_image.png' %}"  class="about-me-img" alt="">
-                        </div>
-                        <div class="col-12">
-
-                          <div class="row justify-content-center">
-                            <div class="social-media d-flex mt-3">
-                            <a href="{{ bio.fb_url }}" class="mx-2">
-                              <i class="fab fa-facebook"></i>
-                            </a>
-                            <a href="{{ bio.linkedin_url }}" class="mx-2">
-                              <i class="fab fa-linkedin-in"></i>
-                            </a>
-
-                            <a href="{{ bio.github_url }}" class="mx-2">
-                              <i class="fab fa-github"></i>
-                            </a>
-                          </div>
-                          </div>
-                        </div>
-                      </div>
-
-                    </div>
-                    <div class="col-md-6 mt-3">
-                      <p class="text-justify">
-                        I am Sudipta Sarker is a full stack web developer. I love to code using python. I am passionate with website developing using Django and fond of implementing new features in it. For web developing I basically use Python based web framework Django as a backend. Currently I am using general tools like CSS and Bootstrap for front end. In upcoming days I will start building Web APIs and React will be used as front end framework for websites. These web APIs can also be used later in mobile platform.
-                      </p>
-                      <div class="div py-3 text-center">
-
-                        <a href="{% static 'file/sudipta_sarker_resume.pdf' %}" class="link-item btn-1 outer-shadow hover-in-shadow">Download CV</a>
-                        <a href="{% url 'portfolio:contact' %}" class="link-item btn-1 outer-shadow hover-in-shadow mx-3">Hire Me</a>
-
-                      </div>
-                    </div>
-
-                  </div>
-               </div>
-
-             </div>
-          </div>
-       </section>
-      <!-- end of about section -->
-
-      <!-- skill section -->
-      <section class="skill-section section py-5" id="skills">
-        <div class="container">
-          <div class="row my-5">
-            <div class="col-12 section-title text-center">
-              <button id="skills-btn" class="btn active-color">Skills</button>
-              <button id="training-btn" class="btn mx-2">Training</button>
-              <button id="education-btn" class="btn">Education</button>
-            </div>
-          </div>
-
-          <!-- skill -->
-          <div class="row my-5" id="skill">
-            {% for skill in skills %}
-             <div class="col-md-6 mb-3 text-center">
-               <div class="d-flex justify-content-between">
-                 <h5 class="skill-name text-capitalize">{{skill.skill_name}}</h5>
-                  <h5 class="skill-percent">{{ skill.percentage}}</h5>
-               </div>
-               <div class="progress">
-                 <div class="progress-bar" role="progressbar" style="width:{{skill.percentage}};" aria-valuenow="" aria-valuemin="0" aria-valuemax="100"></div>
-               </div>
-             </div>
-            {% endfor %}
-          </div>
-          <!-- end skill  -->
-
-
-          <!--  training  -->
-          <div class="row mt-5 d-none" id="training">
-             {% for training in training_infos %}
-               {% if training.before_divider %}
-              <div class="col-5 single-personal-info text-center px-4">
-                <div class="p-3 first-item outer-shadow hover-in-shadow text-right">
-                  <small class="session">{{ training.session }}</small>
-                  <h6 class="name my-2">{{ training.title }}</h6>
-                  <h6 class="name my-2">{{ training.training_center }}</h6>
-                  <small class="detail">{{ training.training_detail }}</small>
-                </div>
-              </div>
-
-               <!-- vertical divider -->
-               <div class="col-1 divider">
-                 <span class="divider-icon">
-                   <i class="fas fa-briefcase"></i>
-                 </span>
-               </div>
-               <!-- vertical divider -->
-
-               {% else %}
-                <div class="col-5 single-personal-info text-center">
-                  <div class="p-3 second-item outer-shadow hover-in-shadow text-left">
-                    <small class="session">{{ training.session }}</small>
-                    <h6 class="name my-2">{{ training.title }}</h6>
-                    <h6 class="name my-2">{{ training.training_center }}</h6>
-                    <small class="detail">{{ training.training_detail }}</small>
-                  </div>
-                </div>
-              {% endif %}
-             {% endfor %}
-           </div>
-          <!-- end training  -->
-
-          <!--  Education  -->
-          <div class="row mt-5 d-none" id="education">
-            {% for degree in edu_infos %}
-               {% if degree.before_divider %}
-              <div class="col-5 single-personal-info text-center px-4">
-                  <div class="p-3 first-item outer-shadow hover-in-shadow text-right">
-                    <small class="session">{{ degree.session }}</small>
-                    <h6 class="name my-2">{{ degree.degree_title }}</h6>
-                    <h6 class="name my-2">{{ degree.institution_name }}</h6>
-                    <small class="detail">{{ degree.description }}</small>
-                    <br>
-                    <small class="detail">{{ degree.result }}</small>
-                  </div>
-              </div>
-
-              <!-- vertical divider -->
-              <div class="col-1 divider">
-                <span class="divider-icon">
-                  <i class="fas fa-graduation-cap"></i>
-                </span>
-              </div>
-              <!-- vertical divider -->
-               {% else %}
-              <div class="col-5 single-personal-info text-center">
-                <div class="p-3 second-item outer-shadow hover-in-shadow text-left">
-                  <small class="session">{{ degree.session }}</small>
-                  <h6 class="name my-2">{{ degree.degree_title }}</h6>
-                  <h6 class="name my-2">{{ degree.institution_name }}</h6>
-                  <small class="detail">{{ degree.description }}</small>
-                  <br>
-                  <small class="detail">{{ degree.result }}</small>
-                </div>
-              </div>
-              {% endif %}
-             {% endfor %}
-          </div>
-          <!-- end education  -->
+    <div class="col-md-6 d-flex align-self-center justify-content-center">
+      <div class="home-text">
+        <p class="text-success">Hi</p>
+        <h2>I'm Sudipta Sarker</h2>
+        <h1 class="text-capitlize">Full Stack Developer</h1>
+        <div class="more-about">
+          <a
+            href="#about"
+            class="text-center mt-4 link-item btn-1 outer-shadow hover-in-shadow"
+            >More About Me</a
+          >
         </div>
-      </section>
-      <!-- end of skill section -->
+      </div>
+    </div>
+    <div class="col-md-6 mt-4">
+      <div class="img-box">
+        <!-- <img src="{{ bio.profile_pic.url }}" alt="profile-pic"> -->
+        <img src="{% static 'img/profile_image.png' %}" alt="profile-pic" />
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end of header -->
 
-      <!-- start of service section -->
-      <section id="services" class="services-section py-5">
-        <div class="container">
-           <!-- heading -->
-           <div class="row mx-auto pb-5">
-            <div class="col text-center mb-4">
-              <h5 class="text-capitalize">Services</h5>
-              <h2 style="font-weight:500;">What Do You Get</h2>
-            </div>
-          </div>
-          <!-- end of heading -->
-           <div class="row">
-              <!-- single service  -->
-              {% for service in services %}
-              <div class="col-sm-6 col-md-4 my-3">
-                <article class="single-service text-center outer-shadow">
-                  <div class="service-icon py-5">
-                        {{ service.icon|safe }}
-                  </div>
-                  <p class="service-name font-weight-bold">{{ service.service_name }}</p>
-                  <div class="service-text pb-3">
-                     <p class="service-detail text-justify mx-4">{{ service.sevice_brief }}</p>
-                  </div>
-                </article>
+<!-- about section start -->
+<section id="about" class="about-section py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center mb-4">
+        <h5>MAIN INFO</h5>
+        <h1 style="font-weight: 500">ABOUT ME</h1>
+      </div>
+
+      <div class="col-12">
+        <div class="row">
+          <div class="col-md-6 text-center mt-4">
+            <div class="row">
+              <div class="col-12 img-box1">
+                <img
+                  src="{% static 'img/profile_image.png' %}"
+                  class="about-me-img"
+                  alt=""
+                />
               </div>
-              {% endfor %}
-              <!-- end of single service  -->
-           </div>
-        </div>
-      </section>
-     <!-- end of service section -->
-
-
-      <!-- latest works -->
-
-      <section id="portfolio" class="portfolio-section py-5">
-        <div class="container">
-          <!-- heading -->
-          <div class="row mx-auto">
-            <div class="col text-center mb-4">
-              <h5>PORTFOLIO</h5>
-              <h2 style="font-weight:500;">LATEST PROJECTS</h2>
-             </div>
-          </div>
-          <!-- end of heading -->
-
-          <!-- project catagories -->
-          <div class="row py-3">
-            <div class="col-12 section-title text-center">
-              <div class="button-group filter-button-group">
-                <button id="all-btn" data-filter="*" class="btn active-color outer-shadow  mx-2 my-2">ALL</button>
-                {% for category in categories %}
-                <button  data-filter=".{{category.name}}" class="btn outer-shadow  mx-2 my-2">{{ category.name}}</button>
-                {% endfor %}
-              </div>
-            </div>
-          </div>
-
-         <!-- end of project categories -->
-         <!-- project row -->
-          <div class="row grid mx-auto">
-            <!-- project -->
-                 {% for project in projects %}
-                  <div class="col-sm-6 col-md-4 project-item my-3 mx-0 {{ project.catagory.name }}">
-                    <div class="img-container outer-shadow p-2">
-                     <a href="{% url 'portfolio:project-detail' project_id=project.id %}">
-                      <img src="{{ project.project_image.url }}"
-                      class="img-fluid rounded project-image"
-                      alt="">
-                     </a>
-                      <a href="{% url 'portfolio:project-detail' project_id=project.id %}" class="btn btn-primary search-link">View</a>
-                       <a href="{% url 'portfolio:project-detail' project_id=project.id %}" class="project-name">
-                      <p class="my-2">{{ project.project_title }}</p>
-                     </a>
-                    </div>
-                  </div>
-                  {% endfor %}
-                <!-- end of project -->
-          </div>
-           <!-- end project row -->
-        </div>
-      </section>
-
-      <!-- end of latest works -->
-
-
-      <!-- Contact section -->
-      <section id="contact" class="contact-section py-5">
-        <div class="container">
-          <!-- heading -->
-          <div class="row mx-auto">
-            <div class="col-12 text-center mb-4">
-              <h5 class="text-capitalize">Contact</h5>
-              <h2 style="font-weight:500;">Get In Touch</h2>
-            </div>
-          </div>
-          <!-- end of heading -->
-          <div class="row mx-auto">
-
-              <!-- single service  -->
-            <div class="col-sm-6 col-md-4 my-3">
-                <article class="contact-info text-center">
-                  <div class="service-icon pt-5 pb-4">
-                        <i class="fas fa-phone contact-icon" style="font-size:20px;"></i>
-                  </div>
-                  <p class="contact-medium-name font-weight-bold">Phone</p>
-                  <div class="service-text pb-5">
-                    <p class="contact-medium-detail text-center mx-4">01715082329</p>
-                  </div>
-                </article>
-            </div>
-            <!-- end of single service  -->
-
-              <!-- single service  -->
-              <div class="col-sm-6 col-md-4 my-3">
-                <article class="contact-info text-center">
-                  <div class="service-icon pt-5 pb-4">
-                        <i class="far fa-envelope contact-icon" style="font-size:20px;"></i>
-                  </div>
-                  <p class="contact-medium-name font-weight-bold">Email</p>
-                  <div class="service-text pb-4">
-                    <p class="contact-medium-detail text-center email">sudiptasarker583@gmail.com</p>
-                  </div>
-                </article>
-              </div>
-              <!-- end of single service  -->
-
-              <!-- single service  -->
-              <div class="col-sm-6 col-md-4 my-3">
-                <article class="contact-info text-center">
-                  <div class="service-icon pt-5 pb-3">
-                        <i class="fas fa-map-marker-alt contact-icon" style="font-size:20px;"></i>
-                  </div>
-                  <p class="contact-medium-name font-weight-bold">Address</p>
-                  <div class="service-text">
-                    <p class="contact-medium-detail text-center mx-4">Savar, Dhaka </p>
-                  </div>
-                </article>
-              </div>
-              <!-- end of single service  -->
-
-
-
-          </div>
-
-          <!-- form -->
-
-          <div class="row my-5">
               <div class="col-12">
+                <div class="row justify-content-center">
+                  <div class="social-media d-flex mt-3">
+                    <a href="{{ bio.fb_url }}" class="mx-2">
+                      <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="{{ bio.linkedin_url }}" class="mx-2">
+                      <i class="fab fa-linkedin-in"></i>
+                    </a>
 
-                <form class="row" method="POST" autocomplete="off">
-                  {% csrf_token %}
-                  <div class="col-md-6">
-                    <div class="form__field">
-
-                      <div class="input-group my-1">
-                        <label class="input-group__label">Name</label>
-                        <!-- <input class="input-group__input" type="text" required> -->
-                        {{ form.sent_by }}
-                      </div>
-
-                      <div class="input-group my-1">
-                        <label class="input-group__label">Email</label>
-                        <!-- <input class="input-group__input" type="email" required> -->
-                        {{ form.sender_email }}
-                      </div>
-
-                      <div class="input-group my-1">
-                        <label class="input-group__label">Subject</label>
-                        <!-- <input class="input-group__input" type="text" required> -->
-                        {{ form.subject }}
-                      </div>
-
-                    </div>
+                    <a href="{{ bio.github_url }}" class="mx-2">
+                      <i class="fab fa-github"></i>
+                    </a>
                   </div>
-                  <div class="col-md-6">
-                    <div class="form__field">
-                      <div class="input-group">
-                        <label class="input-group__label">Message</label>
-                        <!-- <textarea class="input-group__input" rows="7" required></textarea> -->
-                        {{ form.message }}
-                      </div>
-                    </div>
-                  <button type="submit" class="btn submit float-right my-3" >Submit</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 mt-3">
+            <p class="text-justify">
+              I am Sudipta Sarker is a full stack web developer. I love to code
+              using python. I am passionate with website developing using Django
+              and fond of implementing new features in it. For web developing I
+              basically use Python based web framework Django as a backend.
+              Currently I am using general tools like CSS and Bootstrap for
+              front end. In upcoming days I will start building Web APIs and
+              React will be used as front end framework for websites. These web
+              APIs can also be used later in mobile platform.
+            </p>
+            <!-- New -->
+            <div>
+              {% for user in users %}
+              <p>{{ user.username }}</p>
+              <p>{{ user.email }}</p>
+              {% endfor %}
+            </div>
+            <div class="div py-3 text-center">
+              <a
+                href="{% static 'file/sudipta_sarker_resume.pdf' %}"
+                class="link-item btn-1 outer-shadow hover-in-shadow"
+                >Download CV</a
+              >
+              <a
+                href="{% url 'portfolio:contact' %}"
+                class="link-item btn-1 outer-shadow hover-in-shadow mx-3"
+                >Hire Me</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end of about section -->
 
-                  </div>
-                </form>
+<!-- skill section -->
+<section class="skill-section section py-5" id="skills">
+  <div class="container">
+    <div class="row my-5">
+      <div class="col-12 section-title text-center">
+        <button id="skills-btn" class="btn active-color">Skills</button>
+        <button id="training-btn" class="btn mx-2">Training</button>
+        <button id="education-btn" class="btn">Education</button>
+      </div>
+    </div>
 
+    <!-- skill -->
+    <div class="row my-5" id="skill">
+      {% for skill in skills %}
+      <div class="col-md-6 mb-3 text-center">
+        <div class="d-flex justify-content-between">
+          <h5 class="skill-name text-capitalize">{{skill.skill_name}}</h5>
+          <h5 class="skill-percent">{{ skill.percentage}}</h5>
+        </div>
+        <div class="progress">
+          <div
+            class="progress-bar"
+            role="progressbar"
+            style="width:{{skill.percentage}};"
+            aria-valuenow=""
+            aria-valuemin="0"
+            aria-valuemax="100"
+          ></div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <!-- end skill  -->
+
+    <!--  training  -->
+    <div class="row mt-5 d-none" id="training">
+      {% for training in training_infos %} {% if training.before_divider %}
+      <div class="col-5 single-personal-info text-center px-4">
+        <div class="p-3 first-item outer-shadow hover-in-shadow text-right">
+          <small class="session">{{ training.session }}</small>
+          <h6 class="name my-2">{{ training.title }}</h6>
+          <h6 class="name my-2">{{ training.training_center }}</h6>
+          <small class="detail">{{ training.training_detail }}</small>
+        </div>
+      </div>
+
+      <!-- vertical divider -->
+      <div class="col-1 divider">
+        <span class="divider-icon">
+          <i class="fas fa-briefcase"></i>
+        </span>
+      </div>
+      <!-- vertical divider -->
+
+      {% else %}
+      <div class="col-5 single-personal-info text-center">
+        <div class="p-3 second-item outer-shadow hover-in-shadow text-left">
+          <small class="session">{{ training.session }}</small>
+          <h6 class="name my-2">{{ training.title }}</h6>
+          <h6 class="name my-2">{{ training.training_center }}</h6>
+          <small class="detail">{{ training.training_detail }}</small>
+        </div>
+      </div>
+      {% endif %} {% endfor %}
+    </div>
+    <!-- end training  -->
+
+    <!--  Education  -->
+    <div class="row mt-5 d-none" id="education">
+      {% for degree in edu_infos %} {% if degree.before_divider %}
+      <div class="col-5 single-personal-info text-center px-4">
+        <div class="p-3 first-item outer-shadow hover-in-shadow text-right">
+          <small class="session">{{ degree.session }}</small>
+          <h6 class="name my-2">{{ degree.degree_title }}</h6>
+          <h6 class="name my-2">{{ degree.institution_name }}</h6>
+          <small class="detail">{{ degree.description }}</small>
+          <br />
+          <small class="detail">{{ degree.result }}</small>
+        </div>
+      </div>
+
+      <!-- vertical divider -->
+      <div class="col-1 divider">
+        <span class="divider-icon">
+          <i class="fas fa-graduation-cap"></i>
+        </span>
+      </div>
+      <!-- vertical divider -->
+      {% else %}
+      <div class="col-5 single-personal-info text-center">
+        <div class="p-3 second-item outer-shadow hover-in-shadow text-left">
+          <small class="session">{{ degree.session }}</small>
+          <h6 class="name my-2">{{ degree.degree_title }}</h6>
+          <h6 class="name my-2">{{ degree.institution_name }}</h6>
+          <small class="detail">{{ degree.description }}</small>
+          <br />
+          <small class="detail">{{ degree.result }}</small>
+        </div>
+      </div>
+      {% endif %} {% endfor %}
+    </div>
+    <!-- end education  -->
+  </div>
+</section>
+<!-- end of skill section -->
+
+<!-- start of service section -->
+<section id="services" class="services-section py-5">
+  <div class="container">
+    <!-- heading -->
+    <div class="row mx-auto pb-5">
+      <div class="col text-center mb-4">
+        <h5 class="text-capitalize">Services</h5>
+        <h2 style="font-weight: 500">What Do You Get</h2>
+      </div>
+    </div>
+    <!-- end of heading -->
+    <div class="row">
+      <!-- single service  -->
+      {% for service in services %}
+      <div class="col-sm-6 col-md-4 my-3">
+        <article class="single-service text-center outer-shadow">
+          <div class="service-icon py-5">{{ service.icon|safe }}</div>
+          <p class="service-name font-weight-bold">
+            {{ service.service_name }}
+          </p>
+          <div class="service-text pb-3">
+            <p class="service-detail text-justify mx-4">
+              {{ service.sevice_brief }}
+            </p>
+          </div>
+        </article>
+      </div>
+      {% endfor %}
+      <!-- end of single service  -->
+    </div>
+  </div>
+</section>
+<!-- end of service section -->
+
+<!-- latest works -->
+
+<section id="portfolio" class="portfolio-section py-5">
+  <div class="container">
+    <!-- heading -->
+    <div class="row mx-auto">
+      <div class="col text-center mb-4">
+        <h5>PORTFOLIO</h5>
+        <h2 style="font-weight: 500">LATEST PROJECTS</h2>
+      </div>
+    </div>
+    <!-- end of heading -->
+
+    <!-- project catagories -->
+    <div class="row py-3">
+      <div class="col-12 section-title text-center">
+        <div class="button-group filter-button-group">
+          <button
+            id="all-btn"
+            data-filter="*"
+            class="btn active-color outer-shadow mx-2 my-2"
+          >
+            ALL
+          </button>
+          {% for category in categories %}
+          <button
+            data-filter=".{{category.name}}"
+            class="btn outer-shadow mx-2 my-2"
+          >
+            {{ category.name}}
+          </button>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <!-- end of project categories -->
+    <!-- project row -->
+    <div class="row grid mx-auto">
+      <!-- project -->
+      {% for project in projects %}
+      <div
+        class="col-sm-6 col-md-4 project-item my-3 mx-0 {{ project.catagory.name }}"
+      >
+        <div class="img-container outer-shadow p-2">
+          <a href="{% url 'portfolio:project-detail' project_id=project.id %}">
+            <img
+              src="{{ project.project_image.url }}"
+              class="img-fluid rounded project-image"
+              alt=""
+            />
+          </a>
+          <a
+            href="{% url 'portfolio:project-detail' project_id=project.id %}"
+            class="btn btn-primary search-link"
+            >View</a
+          >
+          <a
+            href="{% url 'portfolio:project-detail' project_id=project.id %}"
+            class="project-name"
+          >
+            <p class="my-2">{{ project.project_title }}</p>
+          </a>
+        </div>
+      </div>
+      {% endfor %}
+      <!-- end of project -->
+    </div>
+    <!-- end project row -->
+  </div>
+</section>
+
+<!-- end of latest works -->
+
+<!-- Contact section -->
+<section id="contact" class="contact-section py-5">
+  <div class="container">
+    <!-- heading -->
+    <div class="row mx-auto">
+      <div class="col-12 text-center mb-4">
+        <h5 class="text-capitalize">Contact</h5>
+        <h2 style="font-weight: 500">Get In Touch</h2>
+      </div>
+    </div>
+    <!-- end of heading -->
+    <div class="row mx-auto">
+      <!-- single service  -->
+      <div class="col-sm-6 col-md-4 my-3">
+        <article class="contact-info text-center">
+          <div class="service-icon pt-5 pb-4">
+            <i class="fas fa-phone contact-icon" style="font-size: 20px"></i>
+          </div>
+          <p class="contact-medium-name font-weight-bold">Phone</p>
+          <div class="service-text pb-5">
+            <p class="contact-medium-detail text-center mx-4">01715082329</p>
+          </div>
+        </article>
+      </div>
+      <!-- end of single service  -->
+
+      <!-- single service  -->
+      <div class="col-sm-6 col-md-4 my-3">
+        <article class="contact-info text-center">
+          <div class="service-icon pt-5 pb-4">
+            <i class="far fa-envelope contact-icon" style="font-size: 20px"></i>
+          </div>
+          <p class="contact-medium-name font-weight-bold">Email</p>
+          <div class="service-text pb-4">
+            <p class="contact-medium-detail text-center email">
+              sudiptasarker583@gmail.com
+            </p>
+          </div>
+        </article>
+      </div>
+      <!-- end of single service  -->
+
+      <!-- single service  -->
+      <div class="col-sm-6 col-md-4 my-3">
+        <article class="contact-info text-center">
+          <div class="service-icon pt-5 pb-3">
+            <i
+              class="fas fa-map-marker-alt contact-icon"
+              style="font-size: 20px"
+            ></i>
+          </div>
+          <p class="contact-medium-name font-weight-bold">Address</p>
+          <div class="service-text">
+            <p class="contact-medium-detail text-center mx-4">Savar, Dhaka</p>
+          </div>
+        </article>
+      </div>
+      <!-- end of single service  -->
+    </div>
+
+    <!-- form -->
+
+    <div class="row my-5">
+      <div class="col-12">
+        <form class="row" method="POST" autocomplete="off">
+          {% csrf_token %}
+          <div class="col-md-6">
+            <div class="form__field">
+              <div class="input-group my-1">
+                <label class="input-group__label">Name</label>
+                <!-- <input class="input-group__input" type="text" required> -->
+                {{ form.sent_by }}
               </div>
 
+              <div class="input-group my-1">
+                <label class="input-group__label">Email</label>
+                <!-- <input class="input-group__input" type="email" required> -->
+                {{ form.sender_email }}
+              </div>
 
+              <div class="input-group my-1">
+                <label class="input-group__label">Subject</label>
+                <!-- <input class="input-group__input" type="text" required> -->
+                {{ form.subject }}
+              </div>
+            </div>
           </div>
+          <div class="col-md-6">
+            <div class="form__field">
+              <div class="input-group">
+                <label class="input-group__label">Message</label>
+                <!-- <textarea class="input-group__input" rows="7" required></textarea> -->
+                {{ form.message }}
+              </div>
+            </div>
+            <button type="submit" class="btn submit float-right my-3">
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
 
-          <!-- end form -->
-        </div>
-      </section>
+    <!-- end form -->
+  </div>
+</section>
 
-    <!-- end of contact section -->
+<!-- end of contact section -->
 
-   {% endblock content %}
+{% endblock content %} {% block js %}
 
-   {% block js %}
+<script src="{% static 'js/skills.js' %}"></script>
 
-   <script src="{% static 'js/skills.js' %}"></script>
-
-   {% endblock js %}
+{% endblock js %}

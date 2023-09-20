@@ -5,10 +5,10 @@ from django.db import models
 
 class Biodata(models.Model):
     name = models.CharField(max_length=100)
-    profile_pic = models.ImageField(upload_to='img/profile_pic')
+    profile_pic = models.ImageField(upload_to="img/profile_pic")
     designation = models.CharField(max_length=255)
     about_me = models.TextField()
-    cv_file = models.FileField(upload_to='files')
+    cv_file = models.FileField(upload_to="files")
     fb_url = models.URLField(blank=True)
     linkedin_url = models.URLField(blank=True)
     github_url = models.URLField(blank=True)
@@ -17,12 +17,14 @@ class Biodata(models.Model):
     def __str__(self):
         return self.name
 
+
 class Skill(models.Model):
     skill_name = models.CharField(max_length=200)
     percentage = models.CharField(max_length=20)
 
     def __str__(self):
         return self.skill_name
+
 
 class Training(models.Model):
     session = models.CharField(max_length=100)
@@ -50,9 +52,6 @@ class Education(models.Model):
         return self.degree_title
 
 
-
-
-
 class Service(models.Model):
     icon = models.CharField(max_length=150)
     service_name = models.CharField(max_length=200)
@@ -70,9 +69,11 @@ class Catagory(models.Model):
 
 
 class Project(models.Model):
-    catagory = models.ForeignKey(Catagory, on_delete=models.CASCADE)
+    catagory = models.ForeignKey(
+        Catagory, on_delete=models.CASCADE, null=True, blank=True
+    )
     project_title = models.CharField(max_length=255)
-    project_image = models.ImageField(upload_to='img/projects/')
+    project_image = models.ImageField(upload_to="img/projects/")
     project_brief = models.TextField()
     technologies = models.TextField()
     web_url = models.URLField(blank=True)
@@ -85,7 +86,7 @@ class Project(models.Model):
 class Feature(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
     feature_title = models.CharField(max_length=255)
-    feature_image = models.ImageField(upload_to='img/projects/')
+    feature_image = models.ImageField(upload_to="img/projects/")
 
     def __str__(self):
         return self.feature_title

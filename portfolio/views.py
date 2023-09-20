@@ -3,6 +3,7 @@ from .models import *
 from .forms import ContactForm
 from django.contrib import messages
 from django.conf import settings
+from django.contrib.auth.models import User
 # Create your views here.
 
 
@@ -11,11 +12,10 @@ def index(request):
         form = ContactForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, f'Thank you, Your message has been sent!!')
-            return redirect('portfolio:index')
+            messages.success(request, 'Thank you, Your message has been sent!!')
         else:
-            messages.warning(request, f'Invalid form input.Please try again!')
-            return redirect('portfolio:index')
+            messages.warning(request, 'Invalid form input.Please try again!')
+        return redirect('portfolio:index')
     else:
         form = ContactForm()
         biodata = Biodata.objects.order_by('-created_at').first()
@@ -25,6 +25,7 @@ def index(request):
         services = Service.objects.all()
         categories = Catagory.objects.all()
         projects = Project.objects.all()
+        users = User.objects.all()
 
     context = {
         'form': form,
@@ -35,6 +36,7 @@ def index(request):
         'services': services,
         'categories': categories,
         'projects': projects,
+        'users': users,
     }
     return render(request, 'index.html', context=context)
 
