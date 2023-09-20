@@ -163,7 +163,8 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 
-USE_S3 = os.getenv("USE_S3") == "TRUE"
+USE_S3 = os.environ.get("USE_S3") == "TRUE"
+print("USE_S3", USE_S3)
 
 if USE_S3:
     # aws settings
