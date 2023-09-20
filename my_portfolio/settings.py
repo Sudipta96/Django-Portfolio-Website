@@ -55,6 +55,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "portfolio",
+    # 3rd Party
+    "ckeditor",
 ]
 
 MIDDLEWARE = [
@@ -160,24 +162,6 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-# STATIC_URL = '/static/'
-# MEDIA_URL = '/media/'
-
-# django >= 4.2
-# STORAGES = {"default": {
-#                     "BACKEND": "storages.backends.s3boto3.S3Boto3Storage"
-#             },
-#             "staticfiles": {
-#                     "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
-#             },
-#         }
-
-# AWS CREDENTIALS
-# AWS_S3_ACCESS_KEY_ID = os.environ.get("AWS_S3_ACCESS_KEY_ID")
-# AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
-# AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_STORAGE_BUCKET_NAME")
-# AWS_S3_REGION_NAME = os.environ.get("AWS_S3_REGION_NAME")
-# AWS_QUERYSTRING_EXPIRE = 600
 
 USE_S3 = os.getenv("USE_S3") == "TRUE"
 
@@ -199,8 +183,6 @@ if USE_S3:
     MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/"
     DEFAULT_FILE_STORAGE = "my_portfolio.storages.PublicMediaStorage"
     # s3 private media settings
-    # PRIVATE_MEDIA_LOCATION = 'private'
-    # PRIVATE_FILE_STORAGE = 'hello_django.storage_backends.PrivateMediaStorage'
 else:
     STATIC_URL = "/static/"
     STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
@@ -211,20 +193,14 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
 
+CKEDITOR_CONFIGS = {
+    "default": {
+        "toolbar": "full",
+        "width": "auto",
+    },
+}
+
+
 import mimetypes
 
 mimetypes.add_type("text/css", ".css", True)
-
-
-# if DEBUG == "True":
-#     MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-# else:
-#     MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-
-# if DEBUG == "True":
-#     STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
-# else:
-#     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')

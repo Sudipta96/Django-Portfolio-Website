@@ -1,4 +1,5 @@
 from django.db import models
+from ckeditor.fields import RichTextField
 
 # Create your models here.
 
@@ -74,7 +75,7 @@ class Project(models.Model):
     )
     project_title = models.CharField(max_length=255)
     project_image = models.ImageField(upload_to="img/projects/")
-    project_brief = models.TextField()
+    project_brief = RichTextField()
     technologies = models.TextField()
     web_url = models.URLField(blank=True)
     github_url = models.URLField(blank=True)
