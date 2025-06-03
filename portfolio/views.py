@@ -6,45 +6,61 @@ from django.conf import settings
 from django.contrib.auth.models import User
 # Create your views here.
 
+from django.http import HttpResponse
+from django.contrib.auth import get_user_model
 
-def index(request):
-    if request.method == 'POST':
-        form = ContactForm(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Thank you, Your message has been sent!!')
-        else:
-            messages.warning(request, 'Invalid form input.Please try again!')
-        return redirect('portfolio:index')
-    else:
-        form = ContactForm()
-        biodata = Biodata.objects.order_by('-created_at').first()
-        skills = Skill.objects.all()
-        training_infos = Training.objects.all().order_by('-timestamp')
-        edu_infos = Education.objects.all().order_by('-timestamp')
-        services = Service.objects.all()
-        categories = Catagory.objects.all()
-        projects = Project.objects.all()
-        users = User.objects.all()
+def home(request):
+    User = get_user_model()
+    username = "admin"
+    email = "admin@example.com"
+    password = "securepassword123"
 
-    context = {
-        'form': form,
-        'bio': biodata,
-        'skills': skills,
-        'training_infos': training_infos,
-        'edu_infos': edu_infos,
-        'services': services,
-        'categories': categories,
-        'projects': projects,
-        'users': users,
-    }
-    return render(request, 'index.html', context=context)
+    # Create superuser only if it doesn't exist
+    if not User.objects.filter(username=username).exists():
+        User.objects.create_superuser(username=username, email=email, password=password)
+        return HttpResponse("Superuser created! Now remove this logic for security.")
+
+    return HttpResponse("Welcome to the site. Superuser already exists.")
 
 
-def about(request):
-    biodata = Biodata.objects.last()
-    context = {'bio': biodata}
-    return render(request, 'about.html', context=context)
+# def index(request):
+#     if request.method == 'POST':
+#         form = ContactForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             messages.success(request, 'Thank you, Your message has been sent!!')
+#         else:
+#             messages.warning(request, 'Invalid form input.Please try again!')
+#         return redirect('portfolio:index')
+#     else:
+#         form = ContactForm()
+#         biodata = Biodata.objects.order_by('-created_at').first()
+#         skills = Skill.objects.all()
+#         training_infos = Training.objects.all().order_by('-timestamp')
+#         edu_infos = Education.objects.all().order_by('-timestamp')
+#         services = Service.objects.all()
+#         categories = Catagory.objects.all()
+#         projects = Project.objects.all()
+#         users = User.objects.all()
+
+#     context = {
+#         'form': form,
+#         'bio': biodata,
+#         'skills': skills,
+#         'training_infos': training_infos,
+#         'edu_infos': edu_infos,
+#         'services': services,
+#         'categories': categories,
+#         'projects': projects,
+#         'users': users,
+#     }
+#     return render(request, 'index.html', context=context)
+
+
+# def about(request):
+#     biodata = Biodata.objects.last()
+#     context = {'bio': biodata}
+#     return render(request, 'about.html', context=context)
 
 
 def skills(request):
