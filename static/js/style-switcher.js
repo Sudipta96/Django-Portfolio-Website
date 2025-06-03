@@ -1,5 +1,3 @@
-console.log("style switcher js");
-
 let skinColor = document.getElementById("skin-color");
 let theme = localStorage.getItem("theme");
 let colorStyle = localStorage.getItem("color-style");
@@ -7,8 +5,9 @@ let activeNav = localStorage.getItem("active-nav");
 
 /* ---------- Loading theme and color style -------------------*/
 
-staticURL =
-  USE_S3 === "TRUE" ? "https://ss-dj-ps-portfolio.s3.amazonaws.com" : "";
+staticURL = window.location.href.startsWith("http://127.0.0.1:8000/")
+  ? ""
+  : "https://ss-dj-ps-portfolio.s3.amazonaws.com";
 
 if (colorStyle == null) {
   skinColor.setAttribute("href", `${staticURL}/static/css/skins/color-1.css`);

@@ -1,5 +1,6 @@
 Django==4.2.3
 django-ckeditor==6.7.0 
+dj-database-url==3.0.0
 boto3==1.28.25
 django-storages==1.13.2
 Pillow==10.0.0

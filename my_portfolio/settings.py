@@ -102,6 +102,7 @@ WSGI_APPLICATION = "my_portfolio.wsgi.application"
 #         }
 #     }
 
+import dj_database_url
 
 if DEBUG == "True":
     DATABASES = {
@@ -112,14 +113,21 @@ if DEBUG == "True":
     }
 else:
     DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.postgresql",
-            "NAME": os.environ.get("DB_NAME"),
-            "USER": os.environ.get("DB_USER"),
-            "PASSWORD": os.environ.get("DB_PASS"),
-            "HOST": os.environ.get("DB_HOST"),
-            "PORT": os.environ.get("DB_PORT"),
-        }
+        "default": dj_database_url.config(
+                    default=os.environ.get('DB_URL'),
+                    conn_max_age=600,  # recommended for persistent connections
+                    ssl_require=True   # if your DB requires SSL (Supabase, Neon, etc.)
+                )
+            # "ENGINE": "django.db.backends.postgresql",
+            # "NAME": os.environ.get("DB_NAME"),
+            # "USER": os.environ.get("DB_USER"),
+            # "PASSWORD": os.environ.get("DB_PASS"),
+            # "HOST": os.environ.get("DB_HOST"),
+            # "PORT": os.environ.get("DB_PORT"),
+            # 'OPTIONS': {
+            #     'sslmode': 'require'
+            # }
+        # }
     }
 
 
