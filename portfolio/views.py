@@ -23,7 +23,7 @@ def index(request):
         return redirect('portfolio:index')
     else:
         form = ContactForm()
-        biodata = Biodata.objects.order_by('-created_at').first() if Biodata.objects.exists() else None
+        # biodata = Biodata.objects.order_by('-created_at').first() if Biodata.objects.exists() else None
         skills = Skill.objects.all()
         training_infos = Training.objects.all().order_by('-timestamp')
         edu_infos = Education.objects.all().order_by('-timestamp')
@@ -34,7 +34,7 @@ def index(request):
 
     context = {
         'form': form,
-        'bio': biodata,
+        'bio': skills[0],
         'skills': skills,
         'training_infos': training_infos,
         'edu_infos': edu_infos,
