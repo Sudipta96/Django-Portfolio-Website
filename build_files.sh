@@ -1,21 +1,21 @@
 #!/bin/bash
 
 # List all installed Python packages
-echo "List of installed Python packages:"
-pip list
+# echo "List of installed Python packages:"
+# pip list
 
-# 6. Create virtualenv "venv" if not exist
-if [ ! -d "venv" ]; then
-    python3.9 -m venv venv
-    echo "Virtual environment 'venv' created."
-fi
+# # 6. Create virtualenv "venv" if not exist
+# if [ ! -d "venv" ]; then
+#     python3.9 -m venv venv
+#     echo "Virtual environment 'venv' created."
+# fi
 
-# 7. Activate the virtual environment
-source venv/bin/activate
-echo "Virtual environment 'venv' activated."
+# # 7. Activate the virtual environment
+# source venv/bin/activate
+# echo "Virtual environment 'venv' activated."
 
-python3.9 -m pip install --upgrade pip
-echo "pip upgraded"
+# python3.9 -m pip install --upgrade pip
+# echo "pip upgraded"
 
 # 8. Install packages from requirements.txt
 pip install -r requirements.txt
