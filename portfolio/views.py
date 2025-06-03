@@ -9,7 +9,7 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.contrib.auth import get_user_model
 
-def home(request):
+def index(request):
     User = get_user_model()
     username = "admin"
     email = "admin@example.com"
