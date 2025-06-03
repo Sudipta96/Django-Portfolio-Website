@@ -23,8 +23,8 @@ pip install -r requirements.txt
 # 9. Run Django migrations and collect static files
 python3.9 manage.py migrate
 
-# python3.9 manage.py collectstatic --no-input
-# python3.9 manage.py create_superuser_prod #needed for first time
+python3.9 manage.py collectstatic --no-input
+python3.9 manage.py create_superuser_prod #needed for first time
 
 echo "Setup complete"
 
