@@ -10,16 +10,6 @@ from django.http import HttpResponse
 from django.contrib.auth import get_user_model
 
 def index(request):
-    User = get_user_model()
-    username = "admin"
-    email = "admin@example.com"
-    password = "securepassword123"
-
-    # Create superuser only if it doesn't exist
-    if not User.objects.filter(username=username).exists():
-        User.objects.create_superuser(username=username, email=email, password=password)
-        return HttpResponse("Superuser created! Now remove this logic for security.")
-
     return HttpResponse("Welcome to the site. Superuser already exists.")
 
 
@@ -57,10 +47,10 @@ def index(request):
 #     return render(request, 'index.html', context=context)
 
 
-# def about(request):
-#     biodata = Biodata.objects.last()
-#     context = {'bio': biodata}
-#     return render(request, 'about.html', context=context)
+def about(request):
+    biodata = Biodata.objects.last()
+    context = {'bio': biodata}
+    return render(request, 'about.html', context=context)
 
 
 def skills(request):
